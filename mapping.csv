@@ -1,10 +1,16 @@
 filename,lower,value
 customer,row,Row
-customer,country,CountrY
-customer,year,YEAR
+customer,country,Country
+customer,year,Year
 customer,sales,Sales
-person,cust_id,CUST_id
+customer,customerid,CustomerID
+person,cust_id,cust_id
 person,country,Country
-person,name ,namE
-person,age,aGe
-person,sex,sEx
+person,name,Name
+person,age,Age
+person,sex,Sex
+place,year,Year
+place,country,Country
+place,sales,Sales
+place,row,Row
+place,customerid,CustomerID
