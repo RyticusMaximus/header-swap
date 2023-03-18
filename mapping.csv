@@ -1,0 +1,10 @@
+filename,lower,value
+customer,row,Row
+customer,country,CountrY
+customer,year,YEAR
+customer,sales,Sales
+person,cust_id,CUST_id
+person,country,Country
+person,name ,namE
+person,age,aGe
+person,sex,sEx
