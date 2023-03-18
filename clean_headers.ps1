@@ -1,17 +1,16 @@
-﻿$mainStartDate = Get-Date
-#---------------------------
-#get Directory
+
 $currentDirectory = [IO.Path]::GetDirectoryName($MyInvocation.MyCommand.Path)
 
-$list = "customer","person" 
 
-$list| foreach-object {
+$files = Get-ChildItem -Path $currentDirectory\files\ -Recurse -Include *.csv
+
+foreach ($f in $files){
+    
+    $objectname = (Get-Item $f).BaseName
 
 
+    $file = "$f"
 
-    $objectname =  $_  #'customer'
-
-    $file = "$currentDirectory\files\$objectname.csv"
     $dat = get-content $file
 
     $headers = $dat | select -first 1
@@ -24,12 +23,11 @@ $list| foreach-object {
     $headers| foreach-object {
             $head_name = $_
 
-
-            $dt| ForEach-Object {
+            $dt|Where-Object {$_.filename -eq $objectname}| ForEach-Object  {
                 $filename = $_.filename
                 $lower = $_.lower
                 $value = $_.value 
-
+                
                 if(($head_name.ToLower() -eq $lower) -and ($objectname -eq $filename) ) 
                 {
                      $headers[$row] = $value  
