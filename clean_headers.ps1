@@ -4,12 +4,11 @@ $currentDirectory = [IO.Path]::GetDirectoryName($MyInvocation.MyCommand.Path)
 
 $files = Get-ChildItem -Path $currentDirectory\files\ -Recurse -Include *.csv
 
-foreach ($f in $files){
+foreach ($file in $files){
     
-    $objectname = (Get-Item $f).BaseName
+    $objectname = (Get-Item $file).BaseName
 
-
-    $file = "$f"
+    #$file = "$f"
 
     $dat = get-content $file
 
@@ -28,9 +27,15 @@ foreach ($f in $files){
                 $lower = $_.lower
                 $value = $_.value 
                 
-                if(($head_name.ToLower() -eq $lower) -and ($objectname -eq $filename) ) 
+                $r = $head_name.ToLower()
+                 
+             
+
+                if(($head_name.ToLower() -eq $lower) -and ($objectname -eq $filename) -and ($head_name -cne $value)) 
                 {
                      $headers[$row] = $value  
+                     Write-Output ("Changed header in file $filename from $head_name to $value")
+                     
                 }
             
             }
